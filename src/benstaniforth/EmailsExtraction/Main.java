@@ -20,21 +20,12 @@ public class Main {
 
         HashMap<String, Integer> myHashMap = new HashMap<>();
 
-        int counter = 0;
-
         for (String snippet: words) {
             Matcher matcher = pattern.matcher(snippet);
 
             if (matcher.find()) {
                 String domain = matcher.group(1);
-                counter++;
-
-                if (domain == null) {
-                    myHashMap.put(domain, counter);
-                } else {
-                    myHashMap.merge(domain, 1, Integer::sum);
-                }
-
+                myHashMap.merge(domain, 1, Integer::sum);
             }
         }
 
@@ -48,26 +39,3 @@ public class Main {
 
 
 }
-
-// increase the counter for each domain in the hashmap
-//
-//does not exist - put 1
-//does exist - increase value by 1
-
-
-
-//    public static Map myHashMap (String [] words, Pattern pattern) {
-//
-//        HashMap<String, Integer> myHashMap = new HashMap<>();
-//
-//        int counter = 0;
-//
-//        for (String snippet: words) {
-//            Matcher matcher = pattern.matcher(snippet);
-//            if (matcher.find()) {
-//                String domain = matcher.group(1);
-//                counter++;
-//            }
-//        }
-//
-//    }
